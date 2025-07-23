@@ -1,1 +1,7 @@
-<p>counter works!</p>
+<div class="app-counter-container">
+    <div class="app-counter">
+        <app-counter-value [count]="counter"></app-counter-value>
+        <app-counter-button (incrementClicked)="incrementCounter()" (decrementClicked)="decrementCounter()"
+            (resetClicked)="resetCounter()"></app-counter-button>
+    </div>
+</div>
