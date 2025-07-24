@@ -3,8 +3,8 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/app.state';
 import { Observable } from 'rxjs';
 import { Course } from '../models/course.model';
-import { getCourses, showForm } from './state/courses.selector';
-import { showCrateForm } from './state/courses.actions';
+import { getCourses, getShowForm } from './state/courses.selector';
+import { setEditMode, showForm } from './state/courses.actions';
 
 @Component({
   selector: 'app-courses',
@@ -19,10 +19,11 @@ export class CoursesComponent implements OnInit {
 
   ngOnInit(): void {
     this.courses$ = this.store.select(getCourses);
-    this.showForm$ = this.store.select(showForm);
+    this.showForm$ = this.store.select(getShowForm);
   }
 
   showCreateForm() {
-    this.store.dispatch(showCrateForm({ value: true }));
+    this.store.dispatch(setEditMode({ editMode: false }));
+    this.store.dispatch(showForm({ value: true }));
   }
 }

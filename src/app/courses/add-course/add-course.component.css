@@ -248,3 +248,9 @@ h2 {
         width: 100%;
     }
 }
+.validation-error{
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: red;
+    font-size: 14px;
+}
