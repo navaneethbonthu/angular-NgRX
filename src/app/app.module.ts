@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -10,6 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { CounterValueComponent } from './counter/counter-value/counter-value.component';
 import { CounterButtonComponent } from './counter/counter-button/counter-button.component';
 import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './counter/states/counter.reducer';
+import { CustomInputComponent } from './counter/custom-input/custom-input.component';
+import { FormsModule } from '@angular/forms';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { courseReducer } from './courses/state/courses.reducer';
+import { appReducer } from './store/app.state';
+import { CourseCardComponent } from './courses/course-card/course-card.component';
+import { AddCourseComponent } from './courses/add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +28,17 @@ import { StoreModule } from '@ngrx/store';
     CounterComponent,
     CounterValueComponent,
     CounterButtonComponent,
+    CustomInputComponent,
+    CourseCardComponent,
+    AddCourseComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {})],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    StoreModule.forRoot(appReducer),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
