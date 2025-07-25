@@ -1,14 +1,11 @@
-import { counterReducer } from '../counter/states/counter.reducer';
-import { counterState } from '../counter/states/counter.state';
-import { courseReducer } from '../courses/state/courses.reducer';
-import { CoursesState } from '../courses/state/courses.state';
+import { authReducer } from '../auth/states/auth.reducer';
+import { AuthState } from '../auth/states/auth.state';
+import { AUTH_STATE } from '../constants';
 
 export interface AppState {
-  counter: counterState;
-  courses: CoursesState;
+  [AUTH_STATE]: AuthState;
 }
 
 export const appReducer = {
-  counter: counterReducer,
-  courses: courseReducer,
+  [AUTH_STATE]: authReducer,
 };

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../services/auth.service';
 import { User } from 'src/app/models/user.model';
+import { Store } from '@ngrx/store';
+import { loginStart } from '../states/auth.actions';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +14,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loggedInUser: User;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private store: Store) {}
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
@@ -27,19 +29,21 @@ export class LoginComponent implements OnInit {
 
   onFormSubmit() {
     const { email, password } = this.loginForm.value;
-    console.log(this.loginForm.value);
 
-    this.authService.login(email, password).subscribe(
-      (res) => {
-        this.loggedInUser = res;
-        console.log(this.loggedInUser);
-      },
-      (error) => {
-        // IMPORTANT: Log the error.error to see Firebase's specific message
-        console.error('Login/Signup error:', error);
-        console.error('Firebase API Error Details:', error.error);
-      }
-    );
+    this.store.dispatch(loginStart({ email, password }));
+
+    // console.log(this.loginForm.value);
+
+    // this.authService.login(email, password).subscribe(
+    //   (res) => {
+    //     this.loggedInUser = res;
+    //     console.log(this.loggedInUser);
+    //   },
+    //   (error) => {
+    //     console.error('Login/Signup error:', error);
+    //     console.error('Firebase API Error Details:', error.error);
+    //   }
+    // );
   }
 
   vaidateEmail() {

@@ -8,10 +8,15 @@
         <a routerLink="/courses" routerLinkActive="active">Courses</a>
     </div>
     <div class="header-auth-links">
-        <a routerLink="/auth/login">Login</a>
-        <a routerLink="/auth/signup">Signup</a>
-        <button class="logout-button">
-            LOGOUT
-        </button>
+        <span *ngIf="!(loggedUser$ | async)">
+            <a routerLink="/auth/login">Login</a>
+            <a routerLink="/auth/signup">Signup</a>
+        </span>
+        <span *ngIf="(loggedUser$ | async)">
+            <a href="#">{{(loggedUser$ | async)?.email}}</a>
+            <button class="logout-button">
+                LOGOUT
+            </button>
+        </span>
     </div>
 </div>
