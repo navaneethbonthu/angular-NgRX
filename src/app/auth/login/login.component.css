@@ -1,0 +1,304 @@
+/* Login Form Design */
+.app-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh;
+    margin: 0;
+    color: #333;
+}
+
+.login-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0);
+    /* Note: The image shows 0.0 for the alpha value, which makes the shadow fully transparent. You might want to adjust this, e.g., rgba(0, 0, 0, 0.1) for a subtle shadow. */
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.login-form h2 {
+    margin-bottom: 30px;
+    color: #333;
+    font-size: 2em;
+    font-weight: 600;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.95em;
+    color: #555;
+    font-weight: 500;
+}
+
+
+/* border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 1em;
+box-sizing: border-box;
+transition: all 0.3s ease;
+} */
+
+.input-group input[type="email"]:focus,
+.input-group input[type="password"]:focus {
+    border-color: #71b7e6;
+    box-shadow: 0 0 3px rgba(113, 183, 230, 0.2);
+    outline: none;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #9b59b6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+}
+
+/* border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 1em;
+box-sizing: border-box;
+transition: all 0.3s ease;
+} */ /* Login Form Design */
+ .app-login {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 85vh;
+     /* Adjusted for overall page layout */
+     width: 100%;
+     /* Ensure it takes full width for centering */
+ }
+
+ .login-container {
+     background-color: #ffffff;
+     padding: 40px;
+     border-radius: 15px;
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+     /* Subtle shadow */
+     width: 100%;
+     max-width: 400px;
+     /* Max width for the form container */
+     box-sizing: border-box;
+     /* Include padding and border in the element's total width and height */
+     text-align: center;
+ }
+
+ .login-form h2 {
+     margin-bottom: 30px;
+     color: #333;
+     font-size: 2em;
+     font-weight: 700;
+     /* Made slightly bolder */
+ }
+
+ .input-group {
+     margin-bottom: 20px;
+     text-align: left;
+ }
+
+ .input-group label {
+     display: block;
+     margin-bottom: 8px;
+     font-size: 0.95em;
+     color: #555;
+     font-weight: 500;
+ }
+
+ .input-group input {
+     width: 100%;
+     padding: 12px 15px;
+     /* Increased padding slightly */
+     border: 1px solid #ddd;
+     border-radius: 8px;
+     font-size: 1em;
+     box-sizing: border-box;
+     transition: all 0.3s ease;
+ }
+
+ .input-group input:focus {
+     border-color: #71b7e6;
+     /* Blue border on focus */
+     box-shadow: 0 0 5px rgba(113, 183, 230, 0.4);
+     /* Soft blue shadow on focus */
+     outline: none;
+     /* Remove default outline */
+ }
+
+ .login-button {
+     width: 100%;
+     padding: 15px;
+     background-color: #9b59b6;
+     /* Purple button */
+     color: white;
+     border: none;
+     border-radius: 8px;
+     font-size: 1.1em;
+     font-weight: 600;
+     cursor: pointer;
+     transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+     box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+     /* Initial shadow */
+     margin-top: 10px;
+     /* Space above button */
+ }
+
+ .login-button:hover {
+     background-color: #8e44ad;
+     /* Darker purple on hover */
+     transform: translateY(-2px);
+     /* Lift effect */
+     box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+     /* Enhanced shadow on hover */
+ }
+
+ .login-button:active {
+     transform: translateY(0);
+     /* Press effect */
+     box-shadow: 0 2px 10px rgba(155, 89, 182, 0.3);
+     /* Reduced shadow on active */
+ }
+
+ .signup-link {
+     margin-top: 20px;
+     font-size: 0.9em;
+     color: #666;
+     /* Slightly darker text for contrast */
+ }
+
+ .signup-link a {
+     color: #71b7e6;
+     /* Blue link color */
+     text-decoration: none;
+     transition: color 0.3s ease;
+     font-weight: 500;
+ }
+
+ .signup-link a:hover {
+     color: #56a0d4;
+     /* Darker blue on hover */
+     text-decoration: underline;
+ }
+
+ /* Responsive adjustments */
+ @media (max-width: 600px) {
+     .login-container {
+         margin: 20px;
+         /* Add margin on smaller screens */
+         padding: 30px;
+         /* Slightly reduced padding */
+     }
+
+     .login-form h2 {
+         font-size: 1.8em;
+         margin-bottom: 25px;
+     }
+
+     .input-group label {
+         font-size: 0.9em;
+     }
+
+     .input-group input {
+         padding: 10px 12px;
+         font-size: 0.95em;
+     }
+
+     .login-button {
+         padding: 12px;
+         font-size: 1em;
+     }
+ }
+
+.input-group input[type="email"]:focus,
+.input-group input[type="password"]:focus {
+    border-color: #71b7e6;
+    box-shadow: 0 0 3px rgba(113, 183, 230, 0.2);
+    outline: none;
+}
+
+.login-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #9b59b6;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease,
+            transform 0.2s ease;
+        box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+
+.login-button:hover {
+    background-color: #8e44ad;
+    transform: translateY(-2px);
+}
+
+.login-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(155, 89, 182, 0.3);
+}
+
+.signup-link {
+    margin-top: 20px;
+    font-size: 0.9em;
+}
+.signup-link a {
+    color: #71b7e6;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.signup-link a:hover {
+    color: #56a0d4;
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .login-container {
+        margin: 20px;
+        padding: 30px;
+    }
+
+    .login-form h2 {
+        font-size: 1.8em;
+        margin-bottom: 25px;
+    }
+
+    .input-group label {
+        font-size: 0.9em;
+    }
+
+    .input-group input {
+        padding: 10px 12px;
+        font-size: 0.95em;
+    }
+
+    .login-button {
+        padding: 12px;
+        font-size: 1em;
+    }
+}
+
+
+.validation-error {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: red;
+    font-size: 14px;
+}
