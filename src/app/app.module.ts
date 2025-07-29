@@ -13,9 +13,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { appReducer } from './store/app.state';
 import { LoaderComponent } from './loader/loader.component';
 import { ToasterComponent } from './toaster/toaster.component';
+import { AuthEffects } from './auth/states/auth.effects';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, LoaderComponent, ToasterComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    LoaderComponent,
+    ToasterComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,7 +31,7 @@ import { ToasterComponent } from './toaster/toaster.component';
     HttpClientModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

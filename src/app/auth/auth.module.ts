@@ -24,7 +24,6 @@ const routes: Routes = [
     FormsModule,
     CommonModule,
     ReactiveFormsModule,
-    EffectsModule.forFeature([AuthEffects]),
     RouterModule.forChild(routes),
   ],
   exports: [],

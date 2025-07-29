@@ -8,5 +8,18 @@ export const loginStart = createAction(
 
 export const loginSuccess = createAction(
   '[auth] login success',
-  props<{ user: User }>()
+  props<{ user: User; redirected: boolean }>()
 );
+
+export const signupStart = createAction(
+  '[auth] signup start',
+  props<{ email: string; password: string }>()
+);
+export const signupSuccess = createAction(
+  '[auth] signup success',
+  props<{ user: User; redirected: boolean }>()
+);
+
+export const autoLogin = createAction('[auth] auto login');
+
+export const logout = createAction('[auth] logout');

@@ -1,1 +1,24 @@
-<p>signup works!</p>
+<div class="app-login">
+    <div class="login-container">
+        <form class="login-form" [formGroup]="signUpForm" (ngSubmit)="onFormSubmit()">
+
+            <h2>Sign Up Here</h2>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" placeholder="Enter your email" formControlName="email">
+                <div class="validation-error">{{vaidateEmail()}}</div>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="text" placeholder="Enter your password" formControlName="password">
+                <div class="validation-error">{{validatePassword()}}</div>
+            </div>
+            <button type="submit" class="login-button">
+                Sign UP
+            </button>
+            <div class="signup-link">
+                Do have an account?<a routerLink="/auth/login">Login Here</a>
+            </div>
+        </form>
+    </div>
+</div>

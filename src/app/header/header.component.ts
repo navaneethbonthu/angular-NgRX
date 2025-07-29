@@ -4,6 +4,7 @@ import { AppState } from '../store/app.state';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { getLoggedUser } from '../auth/states/auth.selector';
+import { logout } from '../auth/states/auth.actions';
 
 @Component({
   selector: 'app-header',
@@ -17,5 +18,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loggedUser$ = this.store.select(getLoggedUser);
+  }
+  onLogoutClicked() {
+    this.store.dispatch(logout());
   }
 }
