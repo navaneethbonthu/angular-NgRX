@@ -1,4 +1,6 @@
-<div class="app-container">
+<app-loader *ngIf="(showLoading$ | async)"></app-loader>
+<app-toaster *ngIf="(errorMessage$ |async)" [errorMessage]="(errorMessage$ |async)"></app-toaster>
+<div class="app-container" *ngIf="!(showLoading$ | async)">
   <app-header></app-header>
   <div>
     <router-outlet></router-outlet>
