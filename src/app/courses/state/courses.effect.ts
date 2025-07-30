@@ -10,7 +10,7 @@ import {
   updateCourse,
   updateCourseSuccess,
 } from './courses.actions';
-import { catchError, map, mergeMap, of } from 'rxjs';
+import { catchError, delay, map, mergeMap, of } from 'rxjs';
 import { CourseService } from '../services/course.service';
 import { Course } from 'src/app/models/course.model';
 import { setErrorMessage } from 'src/app/shared/shared.actions';
@@ -53,6 +53,7 @@ export class CoursesEffect {
           }),
           catchError((error) => {
             const message = 'Something went worng. Course can not be read';
+            delay(0);
             return of(setErrorMessage({ message }));
           })
         );

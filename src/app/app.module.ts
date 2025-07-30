@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { StoreModule } from '@ngrx/store';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { appReducer } from './store/app.state';
 import { LoaderComponent } from './loader/loader.component';
@@ -18,6 +18,7 @@ import { AuthEffects } from './auth/states/auth.effects';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { enviroments } from './enviroments/enviroment';
+import { AuthIntercerptor } from './interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,7 +39,9 @@ import { enviroments } from './enviroments/enviroment';
     AngularFireModule.initializeApp(enviroments.firebaseConfig),
     AngularFireStorageModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthIntercerptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

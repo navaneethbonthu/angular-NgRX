@@ -10,16 +10,19 @@ import { courseReducer } from './state/courses.reducer';
 import { COURSES_STATE } from '../constants';
 import { EffectsModule } from '@ngrx/effects';
 import { CoursesEffect } from './state/courses.effect';
+import { authGuard } from '../auth/services/auth.guard';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 const routes: Routes = [
   {
     path: '',
     component: CoursesComponent,
+    canActivate: [authGuard],
   },
 ];
 
 @NgModule({
-  declarations: [CoursesComponent, CourseCardComponent, AddCourseComponent],
+  declarations: [CoursesComponent, CourseCardComponent, AddCourseComponent, CourseDetailsComponent],
   imports: [
     FormsModule,
     CommonModule,

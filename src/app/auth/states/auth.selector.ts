@@ -11,3 +11,7 @@ const selectAuthFeature = createFeatureSelector<AuthState>(AUTH_STATE);
 export const getLoggedUser = createSelector(selectAuthFeature, (state) => {
   return state.user;
 });
+
+export const getAccessToken = createSelector(selectAuthFeature, (state) => {
+  return state.user?.accessToken;
+});
