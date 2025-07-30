@@ -8,6 +8,18 @@ export const createCourse = createAction(
   props<{ course: Course }>()
 );
 
+export const createCourseSuccess = createAction(
+  '[courses] create course success',
+  props<{ course: Course }>()
+);
+
+export const readCourses = createAction('[courses] read course');
+
+export const readCourseSuccess = createAction(
+  '[courses] read course success',
+  props<{ courses: Course[] }>()
+);
+
 export const setEditMode = createAction(
   'setEditMode',
   props<{ editMode: boolean }>()
@@ -19,11 +31,21 @@ export const setSelectedCourse = createAction(
 );
 
 export const updateCourse = createAction(
-  'updateCourse',
+  '[courses] update course',
+  props<{ course: Course }>()
+);
+
+export const updateCourseSuccess = createAction(
+  '[courses] update course success',
   props<{ course: Course }>()
 );
 
 export const deleteCourse = createAction(
   '[courses]  delete course',
-  props<{ id: number }>()
+  props<{ id: string }>()
+);
+
+export const deleteCourseSuccess = createAction(
+  '[courses]  delete course success',
+  props<{ id: string }>()
 );

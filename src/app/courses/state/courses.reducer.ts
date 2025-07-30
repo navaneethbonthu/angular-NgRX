@@ -1,12 +1,14 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './courses.state';
 import {
-  createCourse,
+  createCourseSuccess,
   deleteCourse,
+  deleteCourseSuccess,
+  readCourseSuccess,
   setEditMode,
   setSelectedCourse,
   showForm,
-  updateCourse,
+  updateCourseSuccess,
 } from './courses.actions';
 
 export const courseReducer = createReducer(
@@ -17,12 +19,12 @@ export const courseReducer = createReducer(
       showForm: action.value,
     };
   }),
-  on(createCourse, (state, action) => {
-    const course = { ...action.course };
-    course.id = state.courses.length + 1;
+  on(createCourseSuccess, (state, action) => {
+    // const course = { ...action.course };
+    // course.id = (state.courses.length + 1).toString();
     return {
       ...state,
-      courses: [...state.courses, course],
+      courses: [...state.courses, action.course],
     };
   }),
   on(setEditMode, (state, action) => {
@@ -37,9 +39,7 @@ export const courseReducer = createReducer(
       selectedCouse: action.course,
     };
   }),
-  on(updateCourse, (state, action) => {
-    console.log('reducer called');
-
+  on(updateCourseSuccess, (state, action) => {
     const updCourse = state.courses.map((c) => {
       if (c.id === action.course.id) {
         return action.course;
@@ -52,12 +52,18 @@ export const courseReducer = createReducer(
       courses: updCourse,
     };
   }),
-  on(deleteCourse, (state, action) => {
+  on(deleteCourseSuccess, (state, action) => {
     const udatedArr = state.courses.filter((cor) => cor.id !== action.id);
 
     return {
       ...state,
       courses: udatedArr,
+    };
+  }),
+  on(readCourseSuccess, (state, action) => {
+    return {
+      ...state,
+      courses: action.courses,
     };
   })
 );

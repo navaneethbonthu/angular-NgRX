@@ -4,7 +4,7 @@ import { AppState } from '../store/app.state';
 import { Observable } from 'rxjs';
 import { Course } from '../models/course.model';
 import { getCourses, getShowForm } from './state/courses.selector';
-import { setEditMode, showForm } from './state/courses.actions';
+import { readCourses, setEditMode, showForm } from './state/courses.actions';
 
 @Component({
   selector: 'app-courses',
@@ -20,6 +20,7 @@ export class CoursesComponent implements OnInit {
   ngOnInit(): void {
     this.courses$ = this.store.select(getCourses);
     this.showForm$ = this.store.select(getShowForm);
+    this.store.dispatch(readCourses());
   }
 
   showCreateForm() {
