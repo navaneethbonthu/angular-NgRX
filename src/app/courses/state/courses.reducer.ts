@@ -5,8 +5,8 @@ import {
   deleteCourse,
   deleteCourseSuccess,
   readCourseSuccess,
-  setEditMode,
-  setSelectedCourse,
+  // setEditMode,
+  // setSelectedCourse,
   showForm,
   updateCourseSuccess,
 } from './courses.actions';
@@ -27,18 +27,18 @@ export const courseReducer = createReducer(
       courses: [...state.courses, action.course],
     };
   }),
-  on(setEditMode, (state, action) => {
-    return {
-      ...state,
-      isEditMode: action.editMode,
-    };
-  }),
-  on(setSelectedCourse, (state, action) => {
-    return {
-      ...state,
-      selectedCouse: action.course,
-    };
-  }),
+  // on(setEditMode, (state, action) => {
+  //   return {
+  //     ...state,
+  //     isEditMode: action.editMode,
+  //   };
+  // }),
+  // on(setSelectedCourse, (state, action) => {
+  //   return {
+  //     ...state,
+  //     selectedCouse: action.course,
+  //   };
+  // }),
   on(updateCourseSuccess, (state, action) => {
     const updCourse = state.courses.map((c) => {
       if (c.id === action.course.id) {

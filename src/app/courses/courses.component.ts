@@ -4,7 +4,12 @@ import { AppState } from '../store/app.state';
 import { Observable } from 'rxjs';
 import { Course } from '../models/course.model';
 import { getCourses, getShowForm } from './state/courses.selector';
-import { readCourses, setEditMode, showForm } from './state/courses.actions';
+import {
+  readCourses,
+  // setEditMode,
+  showForm,
+} from './state/courses.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses',
@@ -15,7 +20,7 @@ export class CoursesComponent implements OnInit {
   courses$: Observable<Course[]> | null = null;
   showForm$: Observable<boolean> | null = null;
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   ngOnInit(): void {
     this.courses$ = this.store.select(getCourses);
@@ -24,7 +29,8 @@ export class CoursesComponent implements OnInit {
   }
 
   showCreateForm() {
-    this.store.dispatch(setEditMode({ editMode: false }));
+    // this.store.dispatch(setEditMode({ editMode: false }));
+    this.router.navigateByUrl('/courses?edit=false');
     this.store.dispatch(showForm({ value: true }));
   }
 }

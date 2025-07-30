@@ -3,8 +3,8 @@ import { Course } from 'src/app/models/course.model';
 export interface CoursesState {
   courses: Course[];
   showForm: boolean;
-  isEditMode: boolean;
-  selectedCouse: Course;
+  // isEditMode: boolean;
+  // selectedCouse: Course;
 }
 
 export const initialState: CoursesState = {
@@ -29,6 +29,6 @@ export const initialState: CoursesState = {
     // },
   ],
   showForm: false,
-  isEditMode: false,
-  selectedCouse: null,
+  // isEditMode: false,
+  // selectedCouse: null,
 };

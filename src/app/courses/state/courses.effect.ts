@@ -10,10 +10,15 @@ import {
   updateCourse,
   updateCourseSuccess,
 } from './courses.actions';
-import { catchError, delay, map, mergeMap, of } from 'rxjs';
+import { catchError, delay, filter, map, mergeMap, of, switchMap } from 'rxjs';
 import { CourseService } from '../services/course.service';
 import { Course } from 'src/app/models/course.model';
 import { setErrorMessage } from 'src/app/shared/shared.actions';
+import {
+  ROUTER_NAVIGATED,
+  RouterNavigatedAction,
+  RouterNavigationAction,
+} from '@ngrx/router-store';
 
 @Injectable()
 export class CoursesEffect {
@@ -77,6 +82,7 @@ export class CoursesEffect {
       })
     );
   });
+
   deleteCourse$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(deleteCourse),
@@ -88,6 +94,26 @@ export class CoursesEffect {
           catchError((error) => {
             const message = 'Something went worng. Course can not be deleted';
             return of(setErrorMessage({ message }));
+          })
+        );
+      })
+    );
+  });
+
+  getCourseById$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ROUTER_NAVIGATED),
+      filter((r: RouterNavigatedAction) => {
+        return r.payload.routerState.url.startsWith('/courses/course');
+      }),
+      map((r: RouterNavigatedAction) => {
+        return r.payload.routerState['params']['id'];
+      }),
+      switchMap((id) => {
+        return this.courseService.getCourseById(id).pipe(
+          map((course) => {
+            const courseData = [{ ...course, id }];
+            return readCourseSuccess({ courses: courseData });
           })
         );
       })

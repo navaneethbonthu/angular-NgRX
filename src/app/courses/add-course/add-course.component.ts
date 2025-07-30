@@ -3,14 +3,19 @@ import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.state';
 import {
   createCourse,
-  setEditMode,
-  setSelectedCourse,
+  // setEditMode,
+  // setSelectedCourse,
   showForm,
   updateCourse,
 } from '../state/courses.actions';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { getEditMode, getSelectedCourse } from '../state/courses.selector';
+import {
+  getCourseByIdQueryParams,
+  // getEditMode,
+  // getSelectedCourse,
+} from '../state/courses.selector';
 import { Course } from 'src/app/models/course.model';
+import { getQueryParams } from 'src/app/store/router/router.selector';
 
 @Component({
   selector: 'app-add-course',
@@ -24,8 +29,8 @@ export class AddCourseComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.store.select(getEditMode).subscribe((value) => {
-      this.editMode = value;
+    this.store.select(getQueryParams).subscribe((queryParams) => {
+      this.editMode = JSON.parse(queryParams['edit']);
     });
     this.init();
     this.subscribeToSelectedCourse();
@@ -50,7 +55,7 @@ export class AddCourseComponent implements OnInit {
   }
 
   subscribeToSelectedCourse() {
-    this.store.select(getSelectedCourse).subscribe((data) => {
+    this.store.select(getCourseByIdQueryParams).subscribe((data) => {
       this.course = data;
     });
 
@@ -85,8 +90,8 @@ export class AddCourseComponent implements OnInit {
     }
 
     this.store.dispatch(showForm({ value: false }));
-    this.store.dispatch(setEditMode({ editMode: false }));
-    this.store.dispatch(setSelectedCourse({ course: null }));
+    // this.store.dispatch(setEditMode({ editMode: false }));
+    // this.store.dispatch(setSelectedCourse({ course: null }));
   }
 
   showTitleValidationError() {

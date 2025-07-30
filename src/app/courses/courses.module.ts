@@ -19,10 +19,20 @@ const routes: Routes = [
     component: CoursesComponent,
     canActivate: [authGuard],
   },
+  {
+    path: 'course/:id',
+    component: CourseDetailsComponent,
+    canActivate: [authGuard],
+  },
 ];
 
 @NgModule({
-  declarations: [CoursesComponent, CourseCardComponent, AddCourseComponent, CourseDetailsComponent],
+  declarations: [
+    CoursesComponent,
+    CourseCardComponent,
+    AddCourseComponent,
+    CourseDetailsComponent,
+  ],
   imports: [
     FormsModule,
     CommonModule,

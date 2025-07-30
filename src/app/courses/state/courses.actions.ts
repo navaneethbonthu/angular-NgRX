@@ -20,15 +20,15 @@ export const readCourseSuccess = createAction(
   props<{ courses: Course[] }>()
 );
 
-export const setEditMode = createAction(
-  'setEditMode',
-  props<{ editMode: boolean }>()
-);
+// export const setEditMode = createAction(
+//   'setEditMode',
+//   props<{ editMode: boolean }>()
+// );
 
-export const setSelectedCourse = createAction(
-  'setSelectedCourse',
-  props<{ course: Course }>()
-);
+// export const setSelectedCourse = createAction(
+//   'setSelectedCourse',
+//   props<{ course: Course }>()
+// );
 
 export const updateCourse = createAction(
   '[courses] update course',

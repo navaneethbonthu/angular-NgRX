@@ -19,6 +19,8 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { enviroments } from './enviroments/enviroment';
 import { AuthIntercerptor } from './interceptors/auth.interceptor';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './store/router/custom-serializer';
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +40,9 @@ import { AuthIntercerptor } from './interceptors/auth.interceptor';
     EffectsModule.forRoot([AuthEffects]),
     AngularFireModule.initializeApp(enviroments.firebaseConfig),
     AngularFireStorageModule,
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+    }),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthIntercerptor, multi: true },

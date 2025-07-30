@@ -16,7 +16,7 @@
             {{course?.price}}
         </div>
         <div class="course-actions">
-            <button class="btn-action course-view">
+            <button class="btn-action course-view" (click)="showCourseDetails()">
                 <i class="fa fa-info" aria-hidden="true"></i>
             </button>
             <button class="btn-action course-edit" (click)="onEditCourse()">

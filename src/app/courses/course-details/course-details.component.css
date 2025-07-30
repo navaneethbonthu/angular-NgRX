@@ -1,0 +1,175 @@
+
+
+/* Overall Course Detail Container */
+.app-course-detail {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Back Button Section */
+.app-course-back {
+  max-width: 800px;
+  margin: 0 auto 20px auto; /* Adjust margin for spacing */
+}
+
+.app-course-back button {
+  background-color: #ff0077; /* Blue for primary action */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex; /* To align icon and text */
+  align-items: center;
+  gap: 8px; /* Space between icon and text */
+  transition: background-color 0.3s ease;
+}
+
+.app-course-back button:hover {
+  background-color: #b3003c;
+}
+
+.app-course-back button i {
+  /* Style for Font Awesome icon, if loaded */
+  font-size: 18px;
+}
+
+/* Course Title */
+.app-course-title {
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Course Image Container */
+.app-course-detail > div:nth-of-type(2) { /* Selects the div containing the img */
+  margin-bottom: 25px;
+  overflow: hidden; /* Ensures image doesn't overflow rounded corners if added */
+  border-radius: 5px; /* Optional: subtle rounded corners for the image */
+}
+
+.app-course-detail img {
+  display: block; /* Removes extra space below image */
+  max-width: 100%; /* Ensures image is responsive within its container */
+  height: auto; /* Maintains aspect ratio */
+  object-fit: cover; /* Ensures the image covers the area, potentially cropping */
+}
+
+/* Author and Price Section */
+.app-course-author-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee; /* Separator */
+}
+
+.app-course-author {
+  font-size: 1.1em;
+  color: #555;
+  font-weight: 500;
+}
+
+.app-course-price {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #28a745; /* Green for price */
+}
+
+/* Course Description */
+.app-course-description {
+  font-size: 1.05em;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.7;
+  text-align: justify;
+}
+
+/* Course Lessons Section */
+.app-course-lessons {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  transition: background-color 0.2s ease, padding-left 0.2s ease;
+}
+
+.app-course-lessons:last-child {
+  border-bottom: none; /* No border for the last lesson */
+}
+
+.app-course-lessons:hover {
+  background-color: #f9f9f9;
+  padding-left: 10px; /* Slight indent on hover */
+}
+
+.app-course-lessons i {
+  font-size: 1.5em; /* Size of the play icon */
+  color: #b3003c; /* Match button color */
+  margin-right: 15px;
+}
+
+.app-course-lessons span {
+  font-size: 1.1em;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Responsive Adjustments (Optional but Recommended) */
+@media (max-width: 768px) {
+  .app-course-detail {
+    padding: 20px;
+    margin: 15px auto;
+  }
+
+  .app-course-title {
+    font-size: 1.8em;
+  }
+
+  .app-course-author-price {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .app-course-price {
+    align-self: flex-end; /* Push price to the right if column direction */
+  }
+
+  .app-course-lessons {
+    padding: 10px 0;
+  }
+
+  .app-course-lessons i {
+    font-size: 1.3em;
+    margin-right: 10px;
+  }
+
+  .app-course-lessons span {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 10px;
+  }
+
+  .app-course-detail {
+    padding: 15px;
+  }
+
+  .app-course-back button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
