@@ -36,7 +36,7 @@ import { CustomSerializer } from './store/router/custom-serializer';
     FormsModule,
     HttpClientModule,
     StoreModule.forRoot(appReducer),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    StoreDevtoolsModule.instrument({ maxAge: 1000, logOnly: !isDevMode() }),
     EffectsModule.forRoot([AuthEffects]),
     AngularFireModule.initializeApp(enviroments.firebaseConfig),
     AngularFireStorageModule,

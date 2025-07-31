@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { CoursesState } from './courses.state';
+import { courseAdapter, CoursesState } from './courses.state';
 import { COURSES_STATE } from 'src/app/constants';
 import {
   getQueryParams,
@@ -10,12 +10,14 @@ import { Params } from '@angular/router';
 export const getCourseState =
   createFeatureSelector<CoursesState>(COURSES_STATE);
 
+const { selectAll } = courseAdapter.getSelectors();
+
 export const getShowForm = createSelector(getCourseState, (state) => {
   return state.showForm;
 });
 
 export const getCourses = createSelector(getCourseState, (state) => {
-  return state.courses;
+  return selectAll(state);
 });
 
 // export const getEditMode = createSelector(getCourseState, (state) => {
@@ -30,7 +32,7 @@ export const getCourseByIdParams = createSelector(
   getCourseState,
   getRouterParams,
   (state, params: Params) => {
-    return state.courses.find((course) => course.id === params['id']);
+    return selectAll(state).find((course) => course.id === params['id']);
   }
 );
 
@@ -38,6 +40,10 @@ export const getCourseByIdQueryParams = createSelector(
   getCourseState,
   getQueryParams,
   (state, params: Params) => {
-    return state.courses.find((course) => course.id === params['id']);
+    return selectAll(state).find((course) => course.id === params['id']);
   }
 );
+
+export const selecteCousesLoaded = createSelector(getCourseState, (state) => {
+  return state.loaded;
+});

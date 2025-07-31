@@ -10,7 +10,16 @@ import {
   updateCourse,
   updateCourseSuccess,
 } from './courses.actions';
-import { catchError, delay, filter, map, mergeMap, of, switchMap } from 'rxjs';
+import {
+  catchError,
+  delay,
+  filter,
+  map,
+  mergeMap,
+  of,
+  switchMap,
+  withLatestFrom,
+} from 'rxjs';
 import { CourseService } from '../services/course.service';
 import { Course } from 'src/app/models/course.model';
 import { setErrorMessage } from 'src/app/shared/shared.actions';
@@ -19,12 +28,17 @@ import {
   RouterNavigatedAction,
   RouterNavigationAction,
 } from '@ngrx/router-store';
+import { Update } from '@ngrx/entity';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.state';
+import { selecteCousesLoaded } from './courses.selector';
 
 @Injectable()
 export class CoursesEffect {
   constructor(
     private actions$: Actions,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private store: Store<AppState>
   ) {}
 
   createCourse$ = createEffect(() => {
@@ -48,7 +62,9 @@ export class CoursesEffect {
   readCourse$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(readCourses),
-      mergeMap((action) => {
+      withLatestFrom(this.store.select(selecteCousesLoaded)), //[actions, loaded_]
+      filter((_, loaded) => !loaded),
+      switchMap((action) => {
         return this.courseService.readCourses().pipe(
           map((data) => {
             // const course: Course = { ...action.course, id: data.name };
@@ -72,7 +88,11 @@ export class CoursesEffect {
       mergeMap((action) => {
         return this.courseService.updateCourses(action.course).pipe(
           map((data) => {
-            return updateCourseSuccess({ course: action.course });
+            const updatedCourse: Update<Course> = {
+              id: action.course.id,
+              changes: { ...action.course },
+            };
+            return updateCourseSuccess({ course: updatedCourse });
           }),
           catchError((error) => {
             const message = 'Something went worng. Course can not be updated';
@@ -112,8 +132,8 @@ export class CoursesEffect {
       switchMap((id) => {
         return this.courseService.getCourseById(id).pipe(
           map((course) => {
-            const courseData = [{ ...course, id }];
-            return readCourseSuccess({ courses: courseData });
+            const courseData: Course = { ...course, id };
+            return createCourseSuccess({ course: courseData });
           })
         );
       })

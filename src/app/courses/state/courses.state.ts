@@ -1,34 +1,21 @@
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { Course } from 'src/app/models/course.model';
 
-export interface CoursesState {
-  courses: Course[];
+export const courseAdapter = createEntityAdapter<Course>({
+  selectId: (course: Course) => course.id,
+  sortComparer: sortByTitle,
+});
+
+export interface CoursesState extends EntityState<Course> {
   showForm: boolean;
-  // isEditMode: boolean;
-  // selectedCouse: Course;
+  loaded: boolean;
 }
 
-export const initialState: CoursesState = {
-  courses: [
-    // {
-    //   id: '1',
-    //   title: 'Mastering Modern JavaScript',
-    //   description:
-    //     'A comprehensive course covering ES6+ features, asynchronous JavaScript, and front-end development essentials.',
-    //   image: './assets/images/javascript.jpg',
-    //   author: 'John Doe',
-    //   price: 49.99,
-    // },
-    // {
-    //   id: '2',
-    //   title: 'Angular - From Zero to Hero',
-    //   description:
-    //     'Learn to build robust and scalable single-page applications with Angular, including components, services, routing, and state management.',
-    //   image: './assets/images/javascript.jpg',
-    //   author: 'Jane Smith',
-    //   price: 59.99,
-    // },
-  ],
+export const initialState: CoursesState = courseAdapter.getInitialState({
   showForm: false,
-  // isEditMode: false,
-  // selectedCouse: null,
-};
+  loaded: false,
+});
+
+export function sortByTitle(a: Course, b: Course): number {
+  return a.title.localeCompare(b.title);
+}
